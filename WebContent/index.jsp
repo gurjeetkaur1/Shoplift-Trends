@@ -38,6 +38,7 @@
 	String type = request.getParameter("type");
 	String message = "All Products";
 	if (search != null) {
+		search = search.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 		products = prodDao.searchAllProducts(search);
 		message = "Showing Results for '" + search + "'";
 	} else if (type != null) {
