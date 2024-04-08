@@ -31,15 +31,19 @@ public class AddProductSrv extends HttpServlet {
 		String userName = (String) session.getAttribute("username");
 		String password = (String) session.getAttribute("password");
 
-		if (userType == null || !userType.equals("admin")) {
+		try {
+			if (userType == null || !userType.equals("admin")) {
 
-			response.sendRedirect("login.jsp?message=Access Denied!");
+				response.sendRedirect("login.jsp?message=Access Denied!");
 
-		}
+			}
 
-		else if (userName == null || password == null) {
+			else if (userName == null || password == null) {
 
-			response.sendRedirect("login.jsp?message=Session Expired, Login Again to Continue!");
+				response.sendRedirect("login.jsp?message=Session Expired, Login Again to Continue!");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		String status = "Product Registration Failed!";
